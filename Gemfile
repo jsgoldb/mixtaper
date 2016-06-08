@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'nokogiri'
 gem 'devise_token_auth'
 gem 'omniauth-spotify'
+gem 'bower-rails'
 
 
 group :development, :test do
