@@ -26,6 +26,7 @@ gem 'nokogiri'
 gem 'devise_token_auth'
 gem 'omniauth-spotify'
 gem 'bower-rails'
+gem 'dotenv'
 
 
 group :development, :test do
