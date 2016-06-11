@@ -30,9 +30,9 @@
         # don't send confirmation email!!!
         @resource.skip_confirmation!
       end
-
+      binding.pry
       sign_in(:user, @resource, store: false, bypass: false)
-
+      binding.pry
       @resource.save!
 
       yield @resource if block_given?
@@ -198,6 +198,7 @@
       # See app/views/devise_token_auth/omniauth_external_window.html.erb to understand
       # why we can handle these both the same.  The view is setup to handle both cases
       # at the same time.
+      binding.pry
       if ['inAppBrowser', 'newWindow'].include?(omniauth_window_type)
         render_data(message, user_data.merge(data))
 
