@@ -7,8 +7,10 @@ function SpotifyService($window, $http, $auth, $rootScope) {
 
   this.setCredentials = function(){
     if (window.location.search.split('&')[0].split('=')[1] !== undefined){
+      this.token = window.location.search.split('&')[0].split('=')[1];
       return window.location.search.split('&')[0].split('=')[1];
     }
+    debugger;
   }
 
   this.logoutUser = function(){

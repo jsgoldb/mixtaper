@@ -1,4 +1,4 @@
-function MainController($auth, $window, $scope, SpotifyService) {
+function MainController(SpotifyService) {
   var ctrl = this;
 
   ctrl.login = function(){
@@ -13,7 +13,7 @@ function MainController($auth, $window, $scope, SpotifyService) {
 
 }
 
-MainController.$inject = ['$auth', '$window', '$scope', 'SpotifyService'];
+MainController.$inject = ['SpotifyService'];
 
 angular
   .module('app')
