@@ -1,6 +1,6 @@
 function MainForm($rootScope, SpotifyService){
   return {
-    templateUrl: 'app/views/application/main.html',
+    template: '<button ng-click="ctrl.getPlaylists()">Get Playlists</button>',
     scope: {},
     link: function(scope, elements, attrs, ctrl){
       if (window.location.search.split('&')[0].split('=')[1] !== undefined){

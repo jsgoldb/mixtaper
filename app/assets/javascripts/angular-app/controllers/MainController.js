@@ -3,10 +3,18 @@ function MainController(SpotifyService) {
 
   ctrl.login = function(){
     SpotifyService.loginUser();
+    SpotifyService.getToken();
   }
 
   ctrl.logout = function(){
     SpotifyService.logoutUser();
+  }
+
+  ctrl.getPlaylists = function(){
+    SpotifyService.getPlaylists()
+      .then(function(resp){
+        debugger;
+      });
   }
 
  ctrl.token = '';

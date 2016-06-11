@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_current_user
 
   def index
-    binding.pry
+
   end
 
   def main
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
 
   def authenticate_current_user
-    binding.pry
+
     #head :unauthorized if get_current_user.nil?
   end
 

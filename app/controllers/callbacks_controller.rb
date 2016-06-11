@@ -15,8 +15,10 @@
 
       # preserve omniauth info for success route. ignore 'extra' in twitter
       # auth response to avoid CookieOverflow.
+
       session['dta.omniauth.auth'] = request.env['omniauth.auth'].except('extra')
       session['dta.omniauth.params'] = request.env['omniauth.params']
+      binding.pry
       redirect_to redirect_route
     end
 
@@ -30,9 +32,7 @@
         # don't send confirmation email!!!
         @resource.skip_confirmation!
       end
-      binding.pry
       sign_in(:user, @resource, store: false, bypass: false)
-      binding.pry
       @resource.save!
 
       yield @resource if block_given?
@@ -68,7 +68,6 @@
         end
       end
       @_omniauth_params
-
     end
 
     # break out provider attribute assignment for easy method extension
@@ -190,6 +189,7 @@
     end
 
     def render_data_or_redirect(message, data, user_data = {})
+      current_user.spotify_token = @_auth_hash["credentials"]
       # We handle inAppBrowser and newWindow the same, but it is nice
       # to support values in case people need custom implementations for each case
       # (For example, nbrustein does not allow new users to be created if logging in with
@@ -198,7 +198,6 @@
       # See app/views/devise_token_auth/omniauth_external_window.html.erb to understand
       # why we can handle these both the same.  The view is setup to handle both cases
       # at the same time.
-      binding.pry
       if ['inAppBrowser', 'newWindow'].include?(omniauth_window_type)
         render_data(message, user_data.merge(data))
 

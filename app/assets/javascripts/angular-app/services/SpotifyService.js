@@ -1,4 +1,4 @@
-function SpotifyService($window, $http, $auth, $rootScope) {
+function SpotifyService($resource, $window, $auth, $rootScope) {
   var self = this;
 
   this.loginUser = function(){
@@ -10,15 +10,22 @@ function SpotifyService($window, $http, $auth, $rootScope) {
       this.token = window.location.search.split('&')[0].split('=')[1];
       return window.location.search.split('&')[0].split('=')[1];
     }
-    debugger;
   }
 
   this.logoutUser = function(){
     $auth.signOut();
   }
+
+  this.getPlaylists = function(){
+    $http.get('')
+  }
+
+  this.getToken = function(){
+    debugger;
+  }
 }
 
-SpotifyService.$inject = ['$window', '$http', '$auth', '$rootScope']
+SpotifyService.$inject = ['$resource', '$window', '$auth', '$rootScope']
 
 angular 
   .module('app')

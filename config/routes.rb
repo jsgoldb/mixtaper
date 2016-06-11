@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/api/v1/users/get_token' => 'users#get_token'
+
 
 
   root "application#index"
