@@ -1,12 +1,13 @@
-function MainForm($rootScope, SpotifyService){
+function MainForm($rootScope, SpotifyService, $resource){
   return {
     template: '<button ng-click="ctrl.getPlaylists()">Get Playlists</button>',
     scope: {},
     link: function(scope, elements, attrs, ctrl){
       if (window.location.search.split('&')[0].split('=')[1] !== undefined){
         if(ctrl.token === ''){
-          ctrl.token = SpotifyService.setCredentials();
-          $rootScope.token = SpotifyService.setCredentials();
+          //ctrl.token = SpotifyService.setCredentials();
+          //$rootScope.token = SpotifyService.setCredentials();
+          //ctrl.token = SpotifyService.getToken();
         }
       };
     },
@@ -14,7 +15,7 @@ function MainForm($rootScope, SpotifyService){
   }
 }
 
-MainForm.$inject = ['$rootScope', 'SpotifyService']
+MainForm.$inject = ['$rootScope', 'SpotifyService', '$resource']
 
 angular 
   .module('app')

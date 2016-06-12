@@ -1,11 +1,13 @@
 <div ng-controller="MainController as ctrl">
+<!-- if no authenticated user -->
   <button ng-click="ctrl.login()">Login with Spotify</button>
 </div>
 
+<!--- if user authenticated -->
+  <main-form></main-form>
+<div class="angular-view-container" ui-view>
 
-<main-form></main-form>
-
-<div class="angular-view-container" ui-view></div>
+</div>
 
 
 

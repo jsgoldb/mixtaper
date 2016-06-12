@@ -1,27 +1,27 @@
-function MainController(SpotifyService) {
+function MainController(SpotifyService, $resource) {
   var ctrl = this;
+
 
   ctrl.login = function(){
     SpotifyService.loginUser();
-    SpotifyService.getToken();
   }
 
   ctrl.logout = function(){
     SpotifyService.logoutUser();
   }
 
-  ctrl.getPlaylists = function(){
-    SpotifyService.getPlaylists()
-      .then(function(resp){
-        debugger;
-      });
-  }
+  // ctrl.getPlaylists = function(){
+  //   SpotifyService.getPlaylists()
+  //     .then(function(resp){
+  //       debugger;
+  //     });
+  // }
 
- ctrl.token = '';
+ 
 
 }
 
-MainController.$inject = ['SpotifyService'];
+MainController.$inject = ['SpotifyService', '$resource'];
 
 angular
   .module('app')

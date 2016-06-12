@@ -190,6 +190,7 @@
 
     def render_data_or_redirect(message, data, user_data = {})
       current_user.spotify_token = @_auth_hash["credentials"]
+      current_user.save
       # We handle inAppBrowser and newWindow the same, but it is nice
       # to support values in case people need custom implementations for each case
       # (For example, nbrustein does not allow new users to be created if logging in with

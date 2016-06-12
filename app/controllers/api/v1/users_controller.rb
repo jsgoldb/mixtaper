@@ -5,11 +5,11 @@ module Api
       respond_to :json
 
       def index
-        respond_with(Playlist.all)
+        respond_with(User.all)
       end
 
       def show
-        respond_with(Playlist.find(params[:id]))
+        respond_with(User.find(params[:id]))
       end
 
       def new

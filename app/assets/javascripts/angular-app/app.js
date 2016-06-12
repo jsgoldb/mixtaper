@@ -18,12 +18,17 @@ angular
 
   }])
 
-  .run(['$rootScope', '$window', '$location', 'SpotifyService', function($rootScope, $window, SpotifyService) {
-      $rootScope.$on('auth:login-success', function() {
+//initial user info configuration, authorization checks for working with Spotify API 
+  .run(['SpotifyService', '$rootScope', function(SpotifyService, $rootScope) {
+      $rootScope.$on('auth:login-success', function(event, user) {
         alert('login');
-        $location.path('/');
+        //$location.path('/')
+        SpotifyService.getUserInfo(); //add name, location to user, logout user if not premium (or in US?)
+        SpotifyService.setCurrentUser(); //set name, email, id, spotify token, and refresh token of current_user as variables in Spotify Serivce by querying the Rails API. Then, use these values in the service for making requests. 
         });
       $rootScope.$on('auth:validation-success', function(event, user) {
+        SpotifyService.getUserInfo(); //add name, location to user, logout user if not premium (or in US?)
+        SpotifyService.setCurrentUser(); //set name, email, id, spotify token, and refresh token of current_user as variables in Spotify Serivce by querying the Rails API. Then, use these values in the service for making requests. 
 
         });
 
