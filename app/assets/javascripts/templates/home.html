@@ -1,0 +1,29 @@
+<!-- <div ng-controller="HomeController as ctrl">
+
+  <button ng-click="ctrl.login()">Login with Spotify</button>
+
+
+  <main-form></main-form> 
+  <button ng-click="ctrl.logout()">Logout</button>
+
+  <a href="#" ui-sref="home.userplaylists" ui-sref-active="active">My Playlists</a>
+
+  <div ui-view></div>
+
+</div> -->
+
+<div class="navbar">
+  <h1>MIXTAPER</h1>
+  <hr>
+  <br>
+  <!-- if no authenticated user -->
+  <a href="#" ng-click="ctrl.login()">Login with Spotify</a>
+  <!--- if user authenticated -->
+  <a href="#" ng-click="ctrl.logout()">Logout</a>
+  <a href="#" ui-sref="home.new" ui-sref-active="active">New Playlist</a>
+  <a href="#" ui-sref="home.playlists" ui-sref-active="active">My Playlists</a>
+  <a href="#" ui-sref="home.users" ui-sref-active="active">View Users</a>
+</div>
+<br>
+<hr>
+<div ui-view></div>

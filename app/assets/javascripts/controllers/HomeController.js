@@ -1,4 +1,4 @@
-function MainController(SpotifyService, $resource) {
+function HomeController(SpotifyService, $resource) {
   var ctrl = this;
 
 
@@ -21,8 +21,8 @@ function MainController(SpotifyService, $resource) {
 
 }
 
-MainController.$inject = ['SpotifyService', '$resource'];
+HomeController.$inject = ['SpotifyService', '$resource'];
 
 angular
   .module('app')
-  .controller('MainController', MainController)
+  .controller('HomeController', HomeController)

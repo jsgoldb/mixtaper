@@ -1,4 +1,4 @@
-function SpotifyService($resource, $auth) {
+function SpotifyService($resource, $auth, $http) {
   var self = this;
   this.loginUser = function(){
     $auth.authenticate('spotify')
@@ -19,8 +19,10 @@ function SpotifyService($resource, $auth) {
     $http.get('')
   }
 
+  var userInfo = $http.get('https://api.spotify.com/v1/me');
+
   this.getUserInfo = function(){
-    debugger;
+    return $http.get('https://api.spotify.com/v1/me');
   //   curl -H "Authorization: Bearer BQCXOpjYbwjS_efV_hikfpUaSkVTpnpLOLYiVM4l6xRGhHjcgI-jSMEhBWcsgnZfURQeuf6jmFeFjLrkhsCCt8eiuVDlx0L5CZzFvniehQkWeSzMTKzweorG93nn-n3baEmdJkzeGsHLA_axPJQSPsReHf-SCYXPPxT-b8W2lUgKqEWIkQ9GePNemRpgatZCUX5zG578DmfcCbix_CD-6kZ3YzXyY6ERvM0JAw7wKu7OyrZfNY6UTlXeFW3-HNWVr8AexKD0ARw https://api.spotify.com/v1/me
   //   {
   // "country" : "US",
@@ -41,7 +43,7 @@ function SpotifyService($resource, $auth) {
   // "uri" : "spotify:user:1234821248"
   }
 
-  this.setCurrentUser = function(){
+  this.setCurrentUser = function(user){
 
   }
 
@@ -50,7 +52,7 @@ function SpotifyService($resource, $auth) {
     
 }
 
-SpotifyService.$inject = ['$resource','$auth']
+SpotifyService.$inject = ['$resource','$auth', '$http']
 
 angular 
   .module('app')

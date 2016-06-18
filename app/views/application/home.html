@@ -1,0 +1,15 @@
+<h1>Home</h1>
+<p>This is the home page.</p>
+
+
+<div ng-controller="HomeController as ctrl">
+
+<!-- if no authenticated user -->
+  <button ng-click="ctrl.login()">Login with Spotify</button>
+
+<!--- if user authenticated -->
+  <main-form></main-form> 
+  <button ng-click="ctrl.logout()">Logout</button>
+
+</div>
+

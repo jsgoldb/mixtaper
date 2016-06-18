@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
 
   def authenticate_current_user
-
+    #binding.pry
     #head :unauthorized if get_current_user.nil?
   end
 

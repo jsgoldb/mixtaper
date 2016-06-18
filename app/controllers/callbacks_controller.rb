@@ -18,7 +18,6 @@
 
       session['dta.omniauth.auth'] = request.env['omniauth.auth'].except('extra')
       session['dta.omniauth.params'] = request.env['omniauth.params']
-      binding.pry
       redirect_to redirect_route
     end
 
@@ -34,7 +33,6 @@
       end
       sign_in(:user, @resource, store: false, bypass: false)
       @resource.save!
-
       yield @resource if block_given?
       render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
     end

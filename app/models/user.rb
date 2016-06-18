@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable, :omniauth_providers => [:spotify]
   include DeviseTokenAuth::Concerns::User
+  has_many :playlists
 end

@@ -11,7 +11,7 @@ function MainForm($rootScope, SpotifyService, $resource){
         }
       };
     },
-    controller: 'MainController as ctrl'
+    controller: 'HomeController as ctrl'
   }
 }
 

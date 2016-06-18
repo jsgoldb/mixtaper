@@ -28,6 +28,7 @@ gem 'devise_token_auth'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-spotify'
 gem 'bower-rails'
+gem 'angular-rails-templates'
 
 
 
