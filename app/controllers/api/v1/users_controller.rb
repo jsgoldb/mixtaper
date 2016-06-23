@@ -22,31 +22,31 @@ module Api
       end
 
       def create
-        @playlist = Playlist.new(playlist_params)
-        if @playlist.save
+        @user = User.new(user_params)
+        if @user.save
           respond_to do |f|
-            f.json { render :json => @playlist }
+            f.json { render :json => @user }
           end
         end
       end
 
       def update
-        @playlist = Playlist.find(params[:id])
-        if @playlist.update(playlist_params)
+        @user = User.find(params[:id])
+        if @user.update(user_params)
           respond_to do |f|
-            f.json { render :json => @playlist }
+            f.json { render :json => @user }
           end
         end
       end
 
       def destroy
-        respond_with Playlist.destroy(params[:id])
+        respond_with User.destroy(params[:id])
       end
 
       private
 
-        def playlist_params
-          params.require(:playlist).permit(:url)
+        def user_params
+          params.require(:user).permit(:data => [:country, :display_name, :email, :href, :id, :product, :uri])
         end
 
     end

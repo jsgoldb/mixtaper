@@ -1,7 +1,7 @@
-function SpotifyService($resource, $auth, $http) {
+function SpotifyService($resource, $auth, $http, User) {
   var self = this;
   this.loginUser = function(){
-    $auth.authenticate('spotify')
+    $auth.authenticate('spotify');
   }
 
   // this.setCredentials = function(){
@@ -19,40 +19,29 @@ function SpotifyService($resource, $auth, $http) {
     $http.get('')
   }
 
-  var userInfo = $http.get('https://api.spotify.com/v1/me');
+  //var userInfo = $http.get('https://api.spotify.com/v1/me');
 
-  this.getUserInfo = function(){
-    return $http.get('https://api.spotify.com/v1/me');
-  //   curl -H "Authorization: Bearer BQCXOpjYbwjS_efV_hikfpUaSkVTpnpLOLYiVM4l6xRGhHjcgI-jSMEhBWcsgnZfURQeuf6jmFeFjLrkhsCCt8eiuVDlx0L5CZzFvniehQkWeSzMTKzweorG93nn-n3baEmdJkzeGsHLA_axPJQSPsReHf-SCYXPPxT-b8W2lUgKqEWIkQ9GePNemRpgatZCUX5zG578DmfcCbix_CD-6kZ3YzXyY6ERvM0JAw7wKu7OyrZfNY6UTlXeFW3-HNWVr8AexKD0ARw https://api.spotify.com/v1/me
-  //   {
-  // "country" : "US",
-  // "display_name" : "Seth Goldberg",
-  // "email" : "jsgrrt@gmail.com",
-  // "external_urls" : {
-  //   "spotify" : "https://open.spotify.com/user/1234821248"
-  // },
-  // "followers" : {
-  //   "href" : null,
-  //   "total" : 7
-  // },
-  // "href" : "https://api.spotify.com/v1/users/1234821248",
-  // "id" : "1234821248",
-  // "images" : [ ],
-  // "product" : "premium",
-  // "type" : "user",
-  // "uri" : "spotify:user:1234821248"
-  }
-
-  this.setCurrentUser = function(user){
+  this.getUserInfo = function(user){
+      self.currentUser = user;
+      return $http.get('https://api.spotify.com/v1/me', {headers: 
+      {'Authorization': 'Bearer ' + user.spotify_token.token}
+    })
 
   }
 
+  this.setCurrentUser = function(userData){
+    User.update({id: this.currentUser.id}, {data: userData});
+      }
+
+  this.currentUser = this.currentUser;
+
+  //this.currentUser = User.get({ id: this.currentUser.id});
 
   
     
 }
 
-SpotifyService.$inject = ['$resource','$auth', '$http']
+SpotifyService.$inject = ['$resource','$auth', '$http', 'User']
 
 angular 
   .module('app')

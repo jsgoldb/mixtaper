@@ -8,9 +8,9 @@ angular
           spotify: '/auth/spotify'
         }
       });
-
-    $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //$httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    delete $httpProvider.defaults.headers.get['If-Modified-Since'];
+    //$httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'if-modified-since'; 
 
     $stateProvider
       .state('home', {
@@ -34,36 +34,43 @@ angular
         controller: 'UsersController as ctrl'
       });
 
+
       $urlRouterProvider.otherwise('/');
 
   }])
 
 //initial user info configuration, authorization checks for working with Spotify API 
-  .run(['SpotifyService', '$rootScope', '$http', '$httpProvider', function(SpotifyService, $rootScope, $http, $httpProvider) {
+  .run(['SpotifyService', '$rootScope', '$http', function(SpotifyService, $rootScope, $http) {
+
+
       $rootScope.$on('auth:login-success', function(event, user) {
         //$location.path('/')
         SpotifyService.getUserInfo(user)
         .then(function(res){
-          debugger;
+          //debugger;
         })
         .catch(function(res, error){
-          debugger;
+          //debugger;
         }); //add name, location, and product to user, logout user if not premium (or in US?)
-        SpotifyService.setCurrentUser(user); //set name, location, product, email, id, spotify token, and refresh token of current_user as variables in Spotify Serivce by querying the Rails API. Then, use these values in the service for making requests.
+        //SpotifyService.setCurrentUser(user); //set name, location, product, email, id, spotify token, and refresh token of current_user as variables in Spotify Serivce by querying the Rails API. Then, use these values in the service for making requests.
 
-        $http.defaults.headers.common['Authorization'] = 'Bearer ' + user.spotify_token;   //set auth token header 
+        //$http.defaults.headers.common['Authorization'] = 'Bearer ' + user.spotify_token;   //set auth token header 
         });
+      //$http.defaults.headers.common['Authorization'] = 'Bearer ' + user.spotify_token.token;
+
       $rootScope.$on('auth:validation-success', function(event, user) {
         SpotifyService.getUserInfo(user)
         .then(function(res){
-          debugger;
+          SpotifyService.setCurrentUser(res.data);
         })
         .catch(function(res, error){
           debugger;
         });
-        SpotifyService.setCurrentUser(user);
-        $http.defaults.headers.common['Authorization'] = 'Bearer ' + user.spotify_token;
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*'; 
+        //SpotifyService.setCurrentUser(user);
+
+
+      //$http.defaults.headers.common['Access-Control-Allow-Headers'] = 'If-Modified-Since'; 
+   
         });
 
     }]);

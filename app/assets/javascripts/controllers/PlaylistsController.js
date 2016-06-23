@@ -2,11 +2,13 @@ angular
   .module('app')
   .controller('PlaylistsController', PlaylistsController);
 
-function PlaylistsController(Playlist){
+function PlaylistsController(Playlist, SpotifyService){
 
   var ctrl = this; 
 
-  ctrl.playlists = Playlist.query();
+  ctrl.playlists = Playlist.query({user_id: SpotifyService.currentUser.id});
+
+  
 }
 
-PlaylistsController.$inject = ['Playlist'];
+PlaylistsController.$inject = ['Playlist', 'SpotifyService'];
