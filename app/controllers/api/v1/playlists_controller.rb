@@ -5,12 +5,10 @@ module Api
       respond_to :json
 
       def index
-        binding.pry
         respond_with(Playlist.all)
       end
 
       def show
-        binding.pry
         respond_with(Playlist.find(params[:id]))
       end
 

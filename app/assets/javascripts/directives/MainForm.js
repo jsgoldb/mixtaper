@@ -6,7 +6,7 @@ function MainForm(SpotifyService, $resource){
       
       
     },
-    controller: 'HomeController as ctrl'
+    controller: 'PlaylistsController as ctrl'
   }
 }
 

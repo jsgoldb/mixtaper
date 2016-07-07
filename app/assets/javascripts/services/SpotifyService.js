@@ -34,7 +34,6 @@ function SpotifyService($resource, $auth, $http, User) {
       }
 
   this.currentUser = this.currentUser;
-
   //this.currentUser = User.get({ id: this.currentUser.id});
 
   

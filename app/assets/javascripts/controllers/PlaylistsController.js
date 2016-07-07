@@ -8,7 +8,8 @@ function PlaylistsController(Playlist, SpotifyService){
 
   ctrl.playlists = Playlist.query({user_id: SpotifyService.currentUser.id});
 
-  
+  ctrl.user = SpotifyService.currentUser;
+
 }
 
 PlaylistsController.$inject = ['Playlist', 'SpotifyService'];
