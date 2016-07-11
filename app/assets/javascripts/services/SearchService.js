@@ -17,23 +17,20 @@ function SearchService(){
     list.forEach(function(result){
       if (result.artists) {
         result.artists.forEach(function(artist){
-          self.resultList['trackArtists'].push(artist.name);
+          self.resultList['trackArtists'].push(result.artists);
         });
       }
       self.resultList[result.name] = result.id;
     });
-
     return self.resultList;
   }
 
   this.addArtistToSearchParams = function(id){
     self.searchParams['artists'].push(id);
-    debugger;
   }
 
   this.addTrackToSearchParams = function(id){
     self.searchParams['tracks'].push(id);
-    debugger;
   }
 
 
