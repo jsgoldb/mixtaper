@@ -1,10 +1,47 @@
 <h1>New Playlist</h1>
 
-<div ng-controller="HomeController as ctrl">
+<!-- <div ng-controller="HomeController as ctrl"> -->
+
+{{ ctrl.user }}
+<ul ng-repeat="(name, value) in resultList track by $index">
+  <li>
+    <a href="" ng-click="ctrl.addChoice(id)">
+        {{ name }}
+<!--         <span ng-repeat="artist in value track by $index | limitTo: (1 - value.length)">
+          
+        </span>  -->
+          
+    </a>
+    <span ng-if"Array.isArray(value)">
+      {{ value }} 
+    </span>
+  </li>
+</ul>
+
+<form ng-submit="ctrl.search()">
+   <div class="form-group">
+      <input type="text" ng-model="ctrl.searchValue" name="searchValue" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }">
+      <div class="radio">
+        <label>
+          <input type="radio" name="searchType" value="artist" ng-model="ctrl.searchType" required>
+          Search Artists
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="searchType" value="track" ng-model="ctrl.searchType">
+          Search Tracks
+        </label>
+      </div>
+   </div> 
+  <input type="submit" value="Search">
+</form>
 
 
 
-  <main-form></main-form> 
+
+  <!--<main-form></main-form> -->
 
 
-</div>
+
+

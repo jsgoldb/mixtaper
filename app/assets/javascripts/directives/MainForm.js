@@ -5,8 +5,7 @@ function MainForm(SpotifyService, $resource){
     link: function(scope, elements, attrs, ctrl){
       
       
-    },
-    controller: 'PlaylistsController as ctrl'
+    }
   }
 }
 

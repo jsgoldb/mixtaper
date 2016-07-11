@@ -1,5 +1,7 @@
 function SpotifyService($resource, $auth, $http, User) {
+
   var self = this;
+
   this.loginUser = function(){
     $auth.authenticate('spotify');
   }
@@ -19,13 +21,17 @@ function SpotifyService($resource, $auth, $http, User) {
     $http.get('')
   }
 
+  this.getSearchMatches = function(searchValue, searchType){
+    return $http.get('https://api.spotify.com/v1/search?q=' + searchValue + '&type=' + searchType + '&limit=8');
+  }
+
   //var userInfo = $http.get('https://api.spotify.com/v1/me');
 
   this.getUserInfo = function(user){
       self.currentUser = user;
       return $http.get('https://api.spotify.com/v1/me', {headers: 
       {'Authorization': 'Bearer ' + user.spotify_token.token}
-    })
+    });
 
   }
 

@@ -1,0 +1,6 @@
+<form ng-submit="ctrl.getArtist()">
+   <div class="form-group">
+      <input type="text" ng-model="ctrl.artist" name="artist" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }">
+   </div> 
+  <input type="submit" value="Find Artist">
+</form>
