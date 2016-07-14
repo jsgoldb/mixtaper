@@ -2,8 +2,6 @@
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
-      // "threex"      : "git@github.com:rharriso/threex.git",
-      // "gsvpano.js"  : "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js"
       "ng-token-auth": "^0.0.29",
       "angular": "v1.5.3",
       "angular-ui-router": "latest",
@@ -14,7 +12,8 @@
   "vendor": {
     "name": "bower-rails generated vendor assets",
     "dependencies": {
-      // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
+      "angular-strap": "https://github.com/mgcrea/angular-strap/blob/master/dist/angular-strap.min.js",
+      "angular-strap-2": "https://github.com/mgcrea/angular-strap/blob/master/dist/angular-strap.tpl.min.js"
     }
   }
 }

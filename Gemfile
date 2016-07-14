@@ -29,6 +29,10 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-spotify'
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'bootstrap-sass'
+
+#adds vendor prefixes when css is compiled
+gem 'autoprefixer-rails'
 
 
 

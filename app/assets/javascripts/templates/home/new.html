@@ -4,7 +4,7 @@
 
 {{ ctrl.user }}
 <ul ng-repeat="(name, value) in resultList track by $index">
-  <li ng-if="$index > 0">
+  <li>
     <a href="" ng-click="ctrl.addChoice(id)">
         {{ name }}
 <!--         <span ng-repeat="artist in value track by $index | limitTo: (1 - value.length)">
@@ -12,10 +12,10 @@
         </span>  -->
           
     </a>
-    By:
+<!--     By:
     <span ng-if"resultList.trackArtists.length !== -1" ng-repeat="artist in resultList.trackArtists[$index - 1]">
       {{ artist.name }}
-    </span>
+    </span> -->
   </li>
 </ul>
 
@@ -38,6 +38,30 @@
   <input type="submit" value="Search">
 </form>
 
+<button ng-click="ctrl.showGenres()" ng-if="genreList.length === 0">List Genres</button>
+<button ng-click="ctrl.hideGenres()" ng-if="genreList.length > 0">Hide Genres</button>
+
+<ul ng-repeat="genre in genreList"> 
+  <li><a href="" ng-click="ctrl.addChoice(genre)">{{ genre }}</a></li>
+</ul>
+
+<!-- Button to trigger a default modal with a scope as an object {title:'', content:'', etc.} -->
+<button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">Click to toggle modal
+  <br>
+  <small>(using an object)</small>
+</button>
+
+<!-- You can use a custom html template with the `data-template` attr -->
+<button type="button" class="btn btn-lg btn-danger" data-animation="am-fade-and-slide-top" data-template-url="modal/docs/modal.demo.tpl.html" bs-modal="modal">Custom Modal
+  <br>
+  <small>(using data-template)</small>
+</button>
+
+<!-- You can use a custom html template with the `data-template` attr -->
+<button type="button" class="btn btn-lg btn-success" ng-click="showModal()">Modal
+  <br>
+  <small>(using service)</small>
+</button>
 
 
 

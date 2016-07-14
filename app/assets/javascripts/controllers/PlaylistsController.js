@@ -4,6 +4,7 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   this.searchValue = '';
   this.searchType = ''; 
   $scope.resultList = [];
+  $scope.genreList = [];
 
   ctrl.playlists = Playlist.query({user_id: SpotifyService.currentUser.id});
 
@@ -13,40 +14,54 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
     SpotifyService.getSearchMatches(this.searchValue, this.searchType)
 
     .then(angular.bind(this, function(res){
-
       if (this.searchType === 'artist') {  
         $scope.resultList = SearchService.resultSearch(res.data.artists.items);
       } else {
         $scope.resultList = SearchService.resultSearch(res.data.tracks.items);
       }
-
     }))
-
     .catch(function(res, error){
-      debugger;
       console.log(error);
     });
   }
 
   this.addChoice = function(id){
     if (this.searchType === 'artist') {
-      SearchService.addArtistToSearchParams(id);
+      SearchService.addItemToSearchParams(id, 'artists');
+      this.searchType = '';
+    } else if (this.searchType === 'track') {
+      SearchService.addItemToSearchParams(id, 'tracks');
+      this.searchType = '';
     } else {
-      SearchService.addTrackToSearchParams(id);
+      SearchService.addItemToSearchParams(id, 'genres');
     }
     $scope.resultList = [];
   }
 
-  this.getTrack = function() {
-    SpotifyService.getTrackId(this.track)
+  this.showGenres = function(){
+    SpotifyService.getGenres()
     .then(function(res){
-      $scope.resultList = SearchService.resultSearch(res.data.tracks.items);
+      $scope.genreList = res.data.genres;
     })
     .catch(function(res, error){
-      debugger;
       console.log(error);
-    })
+    });
   }
+
+  this.hideGenres = function(){
+    $scope.genreList = [];
+  }
+
+  // this.getTrack = function() {
+  //   SpotifyService.getTrackId(this.track)
+  //   .then(function(res){
+  //     $scope.resultList = SearchService.resultSearch(res.data.tracks.items);
+  //   })
+  //   .catch(function(res, error){
+  //     debugger;
+  //     console.log(error);
+  //   })
+  // }
 
 }
 

@@ -4,4 +4,6 @@
 //= require ng-token-auth
 //= require angular-cookie
 //= require angular-rails-templates
+//= require angular_strap1.js
+//= require angular_strap2.js
 //= require_tree .

@@ -1,8 +1,6 @@
 function SearchService(){
   var self = this;
-  self.resultList = {
-    'trackArtists': []
-  };
+  self.resultList = {};
   self.searchParams = {
     'artists': [], 
     'tracks': [],
@@ -10,29 +8,29 @@ function SearchService(){
   };
 
   this.resultSearch = function(list){
-    self.resultList = {
-      'trackArtists': []
-    };
+    self.resultList = {};
 
-    list.forEach(function(result){
+    list.forEach(function(result, index){
       if (result.artists) {
-        result.artists.forEach(function(artist){
-          self.resultList['trackArtists'].push(result.artists);
-        });
+        var trackArtists = result.artists.map(function(artist, index) { return artist.name }).join(", ");
+        self.resultList[result.name + " by " + trackArtists] = result.id;
       }
-      self.resultList[result.name] = result.id;
+      else {
+        self.resultList[result.name] = result.id;
+      }
     });
+
     return self.resultList;
   }
 
-  this.addArtistToSearchParams = function(id){
-    self.searchParams['artists'].push(id);
-  }
 
-  this.addTrackToSearchParams = function(id){
-    self.searchParams['tracks'].push(id);
+  this.addItemToSearchParams = function(id, item){
+    if (self.searchParams['artists'].length + self.searchParams['tracks'].length + self.searchParams['genres'].length < 5){
+      self.searchParams[item].push(id);
+    } else {
+      //flash alert
+    }
   }
-
 
 
 }

@@ -22,7 +22,21 @@ function SpotifyService($resource, $auth, $http, User) {
   }
 
   this.getSearchMatches = function(searchValue, searchType){
-    return $http.get('https://api.spotify.com/v1/search?q=' + searchValue + '&type=' + searchType + '&limit=8');
+    //searchValue = searchValue.replace(/\s/g, '%20');
+    var limit;
+
+    if (searchType === 'artist') {
+      limit = "&limit=10"; 
+    } else {
+      limit = "&limit=20";
+    }
+
+    return $http.get('https://api.spotify.com/v1/search?q="' + searchValue + '"&type=' + searchType + limit);
+  }
+
+  this.getGenres = function(){
+    return $http.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {headers: {'Authorization': 'Bearer ' + self.currentUser.spotify_token.token}
+    });
   }
 
   //var userInfo = $http.get('https://api.spotify.com/v1/me');
