@@ -1,5 +1,5 @@
 angular
-  .module('app', ['ui.router', 'ngResource', 'ng-token-auth', 'ipCookie', 'templates', 'mgcrea.ngStrap'])
+  .module('app', ['ui.router', 'ngResource', 'ng-token-auth', 'ipCookie', 'templates'])
   .config(['$authProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($authProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
     $authProvider
       .configure({

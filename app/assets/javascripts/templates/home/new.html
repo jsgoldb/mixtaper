@@ -5,7 +5,7 @@
 {{ ctrl.user }}
 <ul ng-repeat="(name, value) in resultList track by $index">
   <li>
-    <a href="" ng-click="ctrl.addChoice(id)">
+    <a href="" ng-click="ctrl.addChoice(value)">
         {{ name }}
 <!--         <span ng-repeat="artist in value track by $index | limitTo: (1 - value.length)">
           

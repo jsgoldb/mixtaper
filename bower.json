@@ -12,8 +12,6 @@
   "vendor": {
     "name": "bower-rails generated vendor assets",
     "dependencies": {
-      "angular-strap": "https://github.com/mgcrea/angular-strap/blob/master/dist/angular-strap.min.js",
-      "angular-strap-2": "https://github.com/mgcrea/angular-strap/blob/master/dist/angular-strap.tpl.min.js"
     }
   }
 }
