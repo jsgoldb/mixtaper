@@ -5,6 +5,7 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   this.searchType = ''; 
   $scope.resultList = [];
   $scope.genreList = [];
+  $scope.priceSlider = 150;
 
   ctrl.playlists = Playlist.query({user_id: SpotifyService.currentUser.id});
 

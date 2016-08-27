@@ -1,5 +1,5 @@
 angular
-  .module('app', ['ui.router', 'ngResource', 'ng-token-auth', 'ipCookie', 'templates'])
+  .module('app', ['ui.router', 'ngResource', 'ng-token-auth', 'ipCookie', 'templates', 'rzModule'])
   .config(['$authProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($authProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
     $authProvider
       .configure({

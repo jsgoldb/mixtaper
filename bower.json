@@ -9,9 +9,8 @@
       "angular-cookie": "latest"
     }
   },
-  "vendor": {
-    "name": "bower-rails generated vendor assets",
-    "dependencies": {
-    }
+  "name": "bower-rails generated vendor assets",
+  "dependencies": {
+    "angularjs-slider": "^5.4.3"
   }
 }
