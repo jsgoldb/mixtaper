@@ -5,7 +5,24 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   this.searchType = ''; 
   $scope.resultList = [];
   $scope.genreList = [];
-  $scope.priceSlider = 150;
+  $scope.slider = {
+    value: 12,
+    options: {
+        showSelectionBar: true,
+        getSelectionBarColor: function(value) {
+            if (value <= 3)
+                return 'red';
+            if (value <= 6)
+                return 'orange';
+            if (value <= 9)
+                return 'yellow';
+            return '#2AE02A';
+        },
+        onChange: function(id, value) {
+          SearchService.addPreferences(value);
+        }
+  }
+};
 
   ctrl.playlists = Playlist.query({user_id: SpotifyService.currentUser.id});
 

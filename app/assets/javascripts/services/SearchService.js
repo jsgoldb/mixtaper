@@ -6,6 +6,7 @@ function SearchService(){
     'tracks': [],
     'genres': []
   };
+  self.preference = 0;
 
   this.resultSearch = function(list){
     self.resultList = {};
@@ -30,6 +31,10 @@ function SearchService(){
     } else {
       //flash alert
     }
+  }
+
+  this.addPreferences = function(value){
+    self.preference = value;
   }
 
 
