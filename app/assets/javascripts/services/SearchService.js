@@ -6,7 +6,12 @@ function SearchService(){
     'tracks': [],
     'genres': []
   };
-  self.preference = 0;
+  self.acousticPreference = 5;
+  self.danceabilityPreference = 5;
+  self.energyPreference = 5;
+  self.instrumentalPreference = 5;
+  self.modePreference = 1;
+  self.popularityPreference = 50;
 
   this.resultSearch = function(list){
     self.resultList = {};
@@ -33,9 +38,23 @@ function SearchService(){
     }
   }
 
-  this.addPreferences = function(value){
-    self.preference = value;
-  }
+  this.addPreferences = function(value, attribute){
+    if (attribute == 'acoustic') {
+      self.acousticPreference = (value * 0.1).toPrecision(1);
+      } else if (attribute == 'danceability') {
+        self.danceabilityPreference = (value * 0.1).toPrecision(1);
+      } else if (attribute == 'energy') {
+        self.energyPreference = (value * 0.1).toPrecision(1);
+      } else if (attribute == 'instrumental') {
+        self.instrumentalPreference = (value * 0.1).toPrecision(1);
+      } else if (attribute == 'mode') {
+        self.modePreference = value;
+      } else if (attribute == 'popularity') {
+        debugger;
+        self.popularityPreference == value;
+      }
+    }
+  
 
 
 }

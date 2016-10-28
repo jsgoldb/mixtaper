@@ -50,6 +50,7 @@
   <br>
   <small>(using an object)</small>
 </button>
+{{ ctrl.playlistPrefs }}
 
 <!-- You can use a custom html template with the `data-template` attr -->
 <button type="button" class="btn btn-lg btn-danger" data-animation="am-fade-and-slide-top" data-template-url="modal/docs/modal.demo.tpl.html" bs-modal="modal">Custom Modal
@@ -63,9 +64,34 @@
   <small>(using service)</small>
 </button>
 
-<div>
-    <rzslider rz-slider-model="slider.value"
-          rz-slider-options="slider.options"></rzslider>
+<div class="container text-center centerBlock">
+  <h1>Attributes</h1>
+    <div class="row">
+      <h2>Acousticness</h2>
+      <rzslider rz-slider-model="acousticSlider.value" rz-slider-options="acousticSlider.options"></rzslider>
+    </div>
+    <div class="row centerBlock clearfix">
+      <h2>Danceability</h2>
+      <rzslider rz-slider-model="danceabilitySlider.value" rz-slider-options="danceabilitySlider.options"></rzslider>
+    </div>
+    <div class="row">
+      <h2>Energy</h2>
+      <rzslider rz-slider-model="energySlider.value" rz-slider-options="energySlider.options"></rzslider>
+    </div>
+    <div class="row">
+      <h2>Instrumental</h2>
+      <rzslider rz-slider-model="instrumentalSlider.value" rz-slider-options="instrumentalSlider.options"></rzslider>
+    </div>
+    <div class="row">
+      <h2>Major or Minor</h2>
+      <rzslider rz-slider-model="modeSlider.value" rz-slider-options="modeSlider.options"></rzslider>
+    </div>
+    <div class="row">
+      <h2>Popularity</h2>
+      <rzslider rz-slider-model="popularitySlider.value" rz-slider-options="popularitySlider.options"></rzslider>
+    </div>
+
+
 </div>
 
 
