@@ -59,9 +59,9 @@
 </button>
 
 <!-- You can use a custom html template with the `data-template` attr -->
-<button type="button" class="btn btn-lg btn-success" ng-click="showModal()">Modal
+<button type="button" class="btn btn-lg btn-success" ng-click="showModal(); ctrl.makePlaylist()">Make Playlist
   <br>
-  <small>(using service)</small>
+  <small></small>
 </button>
 
 <div class="container text-center centerBlock">
@@ -90,6 +90,11 @@
       <h2>Popularity</h2>
       <rzslider rz-slider-model="popularitySlider.value" rz-slider-options="popularitySlider.options"></rzslider>
     </div>
+    <div class="row">
+      <h2>Mood</h2>
+      <rzslider rz-slider-model="positivitySlider.value" rz-slider-options="positivitySlider.options"></rzslider>
+    </div>
+
 
 
 </div>

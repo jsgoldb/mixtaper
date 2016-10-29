@@ -12,6 +12,7 @@ function SearchService(){
   self.instrumentalPreference = 5;
   self.modePreference = 1;
   self.popularityPreference = 50;
+  self.positivityPreference = 5;
 
   this.resultSearch = function(list){
     self.resultList = {};
@@ -50,8 +51,9 @@ function SearchService(){
       } else if (attribute == 'mode') {
         self.modePreference = value;
       } else if (attribute == 'popularity') {
-        debugger;
-        self.popularityPreference == value;
+        self.popularityPreference = value;
+      } else if (attribute == 'positivity') {
+        self.positivityPreference = (value * 0.1).toPrecision(1);
       }
     }
   

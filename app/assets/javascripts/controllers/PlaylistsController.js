@@ -6,6 +6,13 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   ctrl.playlistPrefs = SearchService; 
   $scope.resultList = [];
   $scope.genreList = [];
+  this.acousticEnabled = true;
+  this.danceabilityEnabled = true;
+  this.popularityEnabled = true;
+  this.modeEnabled = true;
+  this.instrumentalEnabled = true;
+  this.energyEnabled = true;
+  this.positivityEnabled = true; 
 
   $scope.acousticSlider = {
     value: 5,
@@ -150,8 +157,8 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
         showSelectionBar: true,
         showTicksValues: true,
         stepsArray: [
-          {value: 0, legend: 'Minor (Sad)'},
-          {value: 1, legend: 'Major (Happy)'}
+          {value: 0, legend: 'Minor Key'},
+          {value: 1, legend: 'Major Key'}
         ],
         getSelectionBarColor: function(value) {
             if (value <= 3)
@@ -196,6 +203,40 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
           {value: 90, legend: 'Even your parents know these songs'},
           {value: 95, legend: ''},
           {value: 100, legend: 'Most Popular'}
+        ],
+        getSelectionBarColor: function(value) {
+            if (value <= 3)
+                return 'red';
+            if (value <= 6)
+                return 'orange';
+            if (value <= 9)
+                return 'yellow';
+            return '#2AE02A';
+        },
+        onChange: function(id, value) {
+          SearchService.addPreferences(value, id);
+        }
+  }
+};
+
+  $scope.positivitySlider = {
+    value: 5,
+    options: {
+        id: 'positivity',
+        showSelectionBar: true,
+        showTicksValues: true,
+        stepsArray: [
+          {value: 0, legend: 'Breakup Music'},
+          {value: 1, legend: ''},
+          {value: 2, legend: 'Pretty Depressing'},
+          {value: 3, legend: ''},
+          {value: 4, legend: 'Somewhat Downbeat'},
+          {value: 5, legend: ''},
+          {value: 6, legend: 'Moderately Happy'},
+          {value: 7, legend: ''},
+          {value: 8, legend: 'Very Positive'}, 
+          {value: 9, legend: ''},
+          {value: 10, legend: 'Everything is Awesome!'}
         ],
         getSelectionBarColor: function(value) {
             if (value <= 3)
@@ -259,6 +300,76 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
     $scope.genreList = [];
   }
 
+  this.makePlaylist = function(){
+    playlistRequest = "https://api.spotify.com/v1/recommendations?";
+    this.addArtiststoRequest();
+    this.addSongstoRequest();
+    this.addGenrestoRequest();
+    this.addAttributestoRequest();
+    debugger;
+    
+
+  }
+
+  this.addArtiststoRequest = function(){
+    var artistCount = this.playlistPrefs.searchParams.artists.length;
+
+    if (artistCount > 0) {
+      playlistRequest += "seed_artists=";
+      this.playlistPrefs.searchParams.artists.forEach(function(artist, index){
+            playlistRequest += artist;
+            if (artistCount != index + 1) {
+              playlistRequest += ",";
+            } 
+          });
+    }
+  }
+
+  this.addGenrestoRequest = function(){
+    var genreCount = this.playlistPrefs.searchParams.genres.length;
+
+    if (genreCount > 0) {
+      playlistRequest += "&seed_genres=";
+      this.playlistPrefs.searchParams.genres.forEach(function(genre, index){
+        playlistRequest += genre;
+        if (genreCount != index + 1) {
+          playlistRequest += ",";
+        }
+      });
+    }
+
+  }
+
+  this.addSongstoRequest = function(){
+    var trackCount = this.playlistPrefs.searchParams.tracks.length;
+
+    if (trackCount > 0) {
+      playlistRequest += "&seed_tracks=";
+      this.playlistPrefs.searchParams.tracks.forEach(function(track, index){
+        playlistRequest += track;
+        if (trackCount != index + 1) {
+          playlistRequest += ",";
+        }
+      });
+    }
+
+  }
+
+  this.addAttributestoRequest = function(){
+    this.acousticEnabled = true;
+    this.danceabilityEnabled = true;
+    this.popularityEnabled = true;
+    this.modeEnabled = true;
+    this.instrumentalEnabled = true;
+    this.energyEnabled = true;
+    this.positivityEnabled = true; 
+  }
+
+
+}
+
+
+
   // this.getTrack = function() {
   //   SpotifyService.getTrackId(this.track)
   //   .then(function(res){
@@ -270,7 +381,6 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   //   })
   // }
 
-}
 
 PlaylistsController.$inject = ['Playlist', 'SpotifyService', '$scope', '$timeout', '$window', 'SearchService'];
 
