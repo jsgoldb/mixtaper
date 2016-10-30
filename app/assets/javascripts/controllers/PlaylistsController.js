@@ -6,6 +6,7 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   ctrl.playlistPrefs = SearchService; 
   $scope.resultList = [];
   $scope.genreList = [];
+
   this.acousticEnabled = true;
   this.danceabilityEnabled = true;
   this.popularityEnabled = true;
@@ -306,9 +307,13 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
     this.addSongstoRequest();
     this.addGenrestoRequest();
     this.addAttributestoRequest();
-    debugger;
-    
-
+    SpotifyService.getSeedRecommendations(playlistRequest)
+    .then(function(res){
+      debugger;
+    })
+    .catch(function(res, error){
+      console.log(error);
+    })
   }
 
   this.addArtiststoRequest = function(){
@@ -356,13 +361,33 @@ function PlaylistsController(Playlist, SpotifyService, $scope, $timeout, $window
   }
 
   this.addAttributestoRequest = function(){
-    this.acousticEnabled = true;
-    this.danceabilityEnabled = true;
-    this.popularityEnabled = true;
-    this.modeEnabled = true;
-    this.instrumentalEnabled = true;
-    this.energyEnabled = true;
-    this.positivityEnabled = true; 
+    if (this.acousticEnabled) {
+        playlistRequest += ("&target_acousticness=" + this.playlistPrefs.acousticPreference);
+    };
+
+    if (this.danceabilityEnabled) {
+      playlistRequest += ("&target_danceability=" + this.playlistPrefs.danceabilityPreference);
+    };
+    
+    if (this.popularityEnabled) {
+      playlistRequest += ("&target_popularity=" + this.playlistPrefs.popularityPreference);
+    };
+
+    if (this.modeEnabled) {
+      playlistRequest += ("&target_mode=" + this.playlistPrefs.modePreference);
+    };
+
+    if (this.instrumentalEnabled) {
+      playlistRequest += ("&target_instrumentalness=" + this.playlistPrefs.instrumentalPreference);
+    };
+
+    if (this.energyEnabled) {
+      playlistRequest += ("&target_energy=" + this.playlistPrefs.energyPreference);
+    };
+
+    if (this.positivityEnabled) {
+      playlistRequest += ("&target_positivity=" + this.playlistPrefs.positivityPreference);
+    }; 
   }
 
 

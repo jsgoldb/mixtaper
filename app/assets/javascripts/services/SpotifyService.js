@@ -39,6 +39,11 @@ function SpotifyService($resource, $auth, $http, User) {
     });
   }
 
+  this.getSeedRecommendations = function(requestString){
+    return $http.get(requestString, { headers: {'Authorization': 'Bearer ' + self.currentUser.spotify_token.token}
+    });
+  }
+
   //var userInfo = $http.get('https://api.spotify.com/v1/me');
 
   this.getUserInfo = function(user){
